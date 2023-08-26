@@ -1,3 +1,5 @@
+from review import Review  # Import the Review class
+
 class Customer:
     # keeps track of all instances.
     _instances = []
@@ -46,7 +48,16 @@ class Customer:
     @classmethod
     def all(cls):
         return cls._instances
-
+    # returns a list of all restaurants customer has reviewed
+    def restaurants(self):
+        reviewed_restaurants = []
+        for review in Review.all():
+            if review.customer() == self:
+                reviewed_restaurants.append(review.restaurant())
+        return list(set(reviewed_restaurants))
+    # enable customer to add a new review
+    def add_review(self, restaurant, rating):
+        Review(self, restaurant, rating)
 
 # Example usage
 Joy = Customer("Joy", "Anyango")
