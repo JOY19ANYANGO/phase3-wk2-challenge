@@ -1,15 +1,19 @@
 class Customer:
+    # keeps track of all instances.
     _instances = []
+    
+    # initialises given name and last name such that they can be updated
     def __init__(self, given_name=None, family_name=None):
         self._given_name = given_name
         self._family_name = family_name
         self._full_name = f"{given_name} {family_name}"
-        Customer._instances.append(self)
+        Customer._instances.append(self)# adds an instance to the instance list
         
-        
+    # gets the recently updated name
     def get_given_name(self):
         return self._given_name
-        
+    
+    # updates name only when its a string   
     def set_given_name(self, first_name):
         if isinstance(first_name, str):
             print(f"Setting given name to: {first_name}")
@@ -20,9 +24,10 @@ class Customer:
     
     given_name = property(get_given_name, set_given_name)
     
+    # gets the recently updated name
     def get_family_name(self):
         return self._family_name
-        
+    # updates name only when its a string     
     def set_family_name(self, last_name):
         if isinstance(last_name, str):
             print(f"Setting family name to: {last_name}")
@@ -33,8 +38,11 @@ class Customer:
 
     family_name = property(get_family_name, set_family_name)
     
+    # returns cutomers full name
     def full_name(self):
         return self._full_name
+    
+    # returns all instances
     @classmethod
     def all(cls):
         return cls._instances
