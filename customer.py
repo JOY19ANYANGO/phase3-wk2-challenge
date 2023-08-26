@@ -10,7 +10,7 @@ class Customer:
         Customer._instances.append(self)# adds an instance to the instance list
         
     # gets the recently updated name
-    def get_given_name(self):
+    def given_name(self):
         return self._given_name
     
     # updates name only when its a string   
@@ -22,10 +22,10 @@ class Customer:
         else:
             print('Given name must be a string.')
     
-    given_name = property(get_given_name, set_given_name)
+    given_name = property(given_name, set_given_name)
     
     # gets the recently updated name
-    def get_family_name(self):
+    def family_name(self):
         return self._family_name
     # updates name only when its a string     
     def set_family_name(self, last_name):
@@ -36,7 +36,7 @@ class Customer:
         else:
             print('Family name must be a string.')
 
-    family_name = property(get_family_name, set_family_name)
+    family_name = property(family_name, set_family_name)
     
     # returns cutomers full name
     def full_name(self):
