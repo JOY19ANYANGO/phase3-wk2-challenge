@@ -10,14 +10,14 @@ class Restaurant:
     # returns restaurant's name    
     def name(self):
         return self._name    
-    
+    # returns a list of restaurant reviews
     def reviews(self):
         restaurant_reviews = []
         for review in Review.all():
             if review.restaurant() == self:
                 restaurant_reviews.append(review)
         return restaurant_reviews
-    
+    # returns a list of customers
     def customers(self):
         reviewed_customers = []
         for review in Review.all():
