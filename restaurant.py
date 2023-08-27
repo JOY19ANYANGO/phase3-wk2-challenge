@@ -17,6 +17,7 @@ class Restaurant:
             if review.restaurant() == self:
                 restaurant_reviews.append(review)
         return restaurant_reviews
+    
     # returns a list of customers
     def customers(self):
         reviewed_customers = []
@@ -24,6 +25,14 @@ class Restaurant:
             if review.restaurant() == self:
                 reviewed_customers.append(review.customer())
         return list(set(reviewed_customers))
+    
+    # calculate average star rating
+    def average_star_rating(self):
+        if not self._reviews:
+            return 0  # No reviews, so average is 0
+        total_ratings = sum(review.rating() for review in self._reviews)
+        average = total_ratings / len(self._reviews)
+        return average
 
 #example usage
 kfc=Restaurant('KFC')

@@ -2,14 +2,14 @@ from review import Review  # Import the Review class
 
 class Customer:
     # keeps track of all instances.
-    _instances = []
+    _customers = []
     
     # initialises given name and last name such that they can be updated
     def __init__(self, given_name=None, family_name=None):
         self._given_name = given_name
         self._family_name = family_name
         self._full_name = f"{given_name} {family_name}"
-        Customer._instances.append(self)# adds an instance to the instance list
+        Customer._customers.append(self)# adds an instance to the instance list
         
     # gets the recently updated name
     def given_name(self):
@@ -44,10 +44,10 @@ class Customer:
     def full_name(self):
         return self._full_name
     
-    # returns all instances
+    # returns all customers
     @classmethod
     def all(cls):
-        return cls._instances
+        return cls._customers
     # returns a list of all restaurants customer has reviewed
     def restaurants(self):
         reviewed_restaurants = []
@@ -55,10 +55,37 @@ class Customer:
             if review.customer() == self:
                 reviewed_restaurants.append(review.restaurant())
         return list(set(reviewed_restaurants))
+    
     # enable customer to add a new review
     def add_review(self, restaurant, rating):
         Review(self, restaurant, rating)
-
+        
+    # returns number of reviews
+    def num_reviews(self):
+        reviews=[]
+        for review in Review.all():
+            if review.customer() == self:
+                reviews.append(review)
+        return len(reviews)
+    
+    @classmethod
+    def find_by_name(cls, name):
+        for customer in cls._customers:
+            if customer.full_name() == name:
+                return customer
+            else:
+                print("customer not found")
+                
+    @classmethod
+    def find_all_by_given_name(cls, name):
+        matching_customers = []
+        for customer in cls._customers:
+            if customer.given_name() == name:
+                matching_customers.append(customer)
+        return matching_customers  
+    
+    
+               
 # Example usage
 Joy = Customer("Joy", "Anyango")
 print(Joy.given_name)  
