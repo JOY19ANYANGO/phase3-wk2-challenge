@@ -27,12 +27,13 @@ class Review:
     # returns a list of all reviews 
     @classmethod
     def all(cls):
-        return cls.reviews    
+        return cls.reviews  
+      
     def __repr__(self):
-        return f"customer:{self._customer} restaurant:{self._restaurant} rating:{self._rating}"
+        return f"{self._customer} ,{self._restaurant} {self._rating}"
     
 #print("REVIEWS")
-#good=Review("Joy Anyango","Kfc",9)
+good=Review("Joy Anyango","Kfc",9)
 bad=Review("Natasha Wanjira","Galitos",5)
 better=Review("Joy ","Java",7)
 # print(bad.customer())
