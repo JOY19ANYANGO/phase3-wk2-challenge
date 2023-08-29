@@ -1,13 +1,13 @@
 class Review:
     # keeps track of customers reviews
-    _reviews=[]
+    reviews=[]
     # initialises  review with customer,restaurant,rating
     def __init__(self,customer,restaurant,rating=0):
         self._customer=customer
         self._restaurant=restaurant
-        Review._reviews.append(self)# adds review to the list
+        Review.reviews.append(self)# adds review to the list
         # ensures that the rating is a number
-        if isinstance(rating,int or float):
+        if isinstance(rating,(int ,float)):
           self._rating=rating
         else:
             print("ratng must be a number") 
@@ -27,4 +27,14 @@ class Review:
     # returns a list of all reviews 
     @classmethod
     def all(cls):
-        return cls._reviews    
+        return cls.reviews    
+    def __repr__(self):
+        return f"customer:{self._customer} restaurant:{self._restaurant} rating:{self._rating}"
+    
+#print("REVIEWS")
+#good=Review("Joy Anyango","Kfc",9)
+bad=Review("Natasha Wanjira","Galitos",5)
+better=Review("Joy ","Java",7)
+# print(bad.customer())
+nice=Review("Joy Anyango","Galitos",9)
+    

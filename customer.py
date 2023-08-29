@@ -14,7 +14,7 @@ class Customer:
     # gets the recently updated name
     def given_name(self):
         return self._given_name
-    
+ 
     # updates name only when its a string   
     def set_given_name(self, first_name):
         if isinstance(first_name, str):
@@ -49,16 +49,12 @@ class Customer:
     def all(cls):
         return cls._customers
     # returns a list of all restaurants customer has reviewed
-    def restaurants(self):
-        reviewed_restaurants = []
-        for review in Review.all():
-            if review.customer() == self:
-                reviewed_restaurants.append(review.restaurant())
-        return list(set(reviewed_restaurants))
+    def restaurants(self):  
+        return set([review.restaurant() for review in Review.all() if review.customer() in self.full_name()])
     
     # enable customer to add a new review
     def add_review(self, restaurant, rating):
-        Review(self, restaurant, rating)
+        Review(Customer.full_name(self), restaurant, rating)
         
     # returns number of reviews
     def num_reviews(self):
@@ -83,32 +79,15 @@ class Customer:
             if customer.given_name() == name:
                 matching_customers.append(customer)
         return matching_customers  
+
+
+joy=Customer("Joy","Anyango") 
+joy.add_review("Kfc",7)
+print( joy.restaurants())  
+print(Review.all()) 
+        
     
+
+
+
     
-               
-# Example usage
-Joy = Customer("Joy", "Anyango")
-print(Joy.given_name)  
-
-
-Joy.given_name = 'Olive'
-print(Joy.given_name) 
-
-Joy.given_name = False  
-
-print(Joy.full_name()) 
-
-
-print(Joy.family_name) 
-
-Joy.family_name = 'Otieno'
-print(Joy.family_name) 
-
-Joy.family_name = 10  
-
-
-Charity=Customer("Charity",'Wambui')
-Patience=Customer('Patience',"Muraguri")
-all_customers = Customer.all()
-for customer in all_customers:
-    print(customer.full_name())
