@@ -25,9 +25,9 @@ class Restaurant():
     def average_star_rating(self):
         if not self.reviews():
             return 0  # No reviews, so average is 0
-        total_ratings = sum(review.rating() for review in self._reviews)
-        average = total_ratings / len(self._reviews)
+        total_ratings = sum(review.rating() for review in self.reviews())
+        average = total_ratings / len(self.reviews())
         return average
 
 galitos=Restaurant('Galitos')
-print(galitos.customers())
+print(galitos.average_star_rating())

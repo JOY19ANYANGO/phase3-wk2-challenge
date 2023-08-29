@@ -37,4 +37,5 @@ bad=Review("Natasha Wanjira","Galitos",5)
 better=Review("Joy ","Java",7)
 # print(bad.customer())
 nice=Review("Joy Anyango","Galitos",9)
+bad=Review("Joy Anyango","Galitos",16)
     

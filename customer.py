@@ -2,14 +2,14 @@ from review import Review  # Import the Review class
 
 class Customer:
     # keeps track of all instances.
-    _customers = []
+    customers = []
     
     # initialises given name and last name such that they can be updated
     def __init__(self, given_name=None, family_name=None):
         self._given_name = given_name
         self._family_name = family_name
         self._full_name = f"{given_name} {family_name}"
-        Customer._customers.append(self)# adds an instance to the instance list
+        Customer.customers.append(self)# adds an instance to the instance list
         
     # gets the recently updated name
     def given_name(self):
@@ -47,7 +47,7 @@ class Customer:
     # returns all customers
     @classmethod
     def all(cls):
-        return cls._customers
+        return cls.customers
     # returns a list of all restaurants customer has reviewed
     def restaurants(self):  
         return set([review.restaurant() for review in Review.all() if review.customer() in self.full_name()])
@@ -58,15 +58,12 @@ class Customer:
         
     # returns number of reviews
     def num_reviews(self):
-        reviews=[]
-        for review in Review.all():
-            if review.customer() == self:
-                reviews.append(review)
+        reviews=[review for review in Review.all() if review.customer() in self.full_name()]
         return len(reviews)
     
     @classmethod
     def find_by_name(cls, name):
-        for customer in cls._customers:
+        for customer in cls.customers:
             if customer.full_name() == name:
                 return customer
             else:
@@ -74,19 +71,25 @@ class Customer:
                 
     @classmethod
     def find_all_by_given_name(cls, name):
-        matching_customers = []
-        for customer in cls._customers:
-            if customer.given_name() == name:
-                matching_customers.append(customer)
-        return matching_customers  
+        return [customer for customer in Customer.all() if customer.given_name == name]
+        
+    
+    def __repr__(self):
+        return f"{self._given_name} {self._family_name} "
+    
 
 
 joy=Customer("Joy","Anyango") 
+anyango=Customer("Joy","Ottt") 
+olive=Customer("olive","m")
+natasha=Customer("Natasha","Wanjira")
+joy2=Customer("Joy","Anyango") 
+
+
 joy.add_review("Kfc",7)
-print( joy.restaurants())  
-print(Review.all()) 
-        
-    
+print(Customer.find_by_name("Joy Anyango"))
+
+print(Customer.find_all_by_given_name("Joy"))   
 
 
 
