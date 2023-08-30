@@ -70,4 +70,4 @@ Do this in main.py file
 
 Authored by [Joy Anyango](https://github.com/JOY19ANYANGO).
 
-Licensed under the [MIT License]((https://choosealicense.com/licenses/mit/)) 
+Licensed under the [MIT](https://choosealicense.com/licenses/mit/)
