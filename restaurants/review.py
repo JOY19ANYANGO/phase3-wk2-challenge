@@ -32,11 +32,12 @@ class Review:
     def __repr__(self):
         return f"{self._customer} ,{self._restaurant} {self._rating}"
     
-#print("REVIEWS")
+print("REVIEWS")
 good=Review("Joy Anyango","Kfc",9)
 bad=Review("Natasha Wanjira","Galitos",5)
 better=Review("Joy ","Java",7)
-# print(bad.customer())
+print(bad.customer())
 nice=Review("Joy Anyango","Galitos",9)
 bad=Review("Joy Anyango","Galitos",16)
+print(Review.all())
     
